@@ -36,5 +36,5 @@ app.include_router(vote.router)
 # Path operations
 @app.get("/") # decorator
 def root(): # In the case of this router, async keyword (used for asynchronous operations) not required
-    return {"message": "Welcome to my API. It's the best!"}
+    return {"message": "Hello World! Welcome to my API. It's the best!"}
 
