@@ -30,7 +30,7 @@ def get_db():
 
 # while True:
 #     try:
-#         # remember to use env vars before posting on github
+#         # use env vars before posting on github
 #         conn = psycopg2.connect(host=settings.database_hostname, database=settings.database_name, user=settings.database_username, 
 #         password=settings.database_password, cursor_factory=RealDictCursor)
 #         cursor = conn.cursor()

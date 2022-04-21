@@ -1,6 +1,7 @@
-# Abstracting the logic for password hashing
-
 from passlib.context import CryptContext
+
+# abstracting the logic for password hashing.
+# users' passwords are hashed prior to storage in database
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -9,9 +10,3 @@ def hash(password: str):
 
 def verify(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
-
-
-
-
-
-

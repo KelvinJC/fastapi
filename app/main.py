@@ -1,9 +1,8 @@
 # FAST API processes requests in order. It finds the first method that matches then the matching url: "/"
 # Fundamentally an API is a bunch of path operations.
 
-from fastapi import FastAPI, Response
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from . import models
 from .database import engine
 from .routers import post, user, auth, vote
 from .config import Settings
@@ -12,8 +11,8 @@ from .config import Settings
 
 app = FastAPI()
 
+# CORS policy (CORS = Cross Origin Resource Sharing)
 origins = ["*"]
-
 
 app.add_middleware(
     CORSMiddleware,
@@ -31,10 +30,8 @@ app.include_router(user.router)
 app.include_router(auth.router)
 app.include_router(vote.router)
 
-
-
-# Path operations
+# base path operation
 @app.get("/") # decorator
-def root(): # In the case of this router, async keyword (used for asynchronous operations) not required
+async def root(): # In the case of this router, async keyword (used for asynchronous operations) not required
     return {"message": "Hello World! Welcome to my API. It's the best!"}
 

@@ -20,7 +20,7 @@ class PostCreate(PostBase):
 
 # class PostUpdate(PostBase):
 
-class UserResponse(BaseModel): # placed here to give interpreter knowledge of the UserResponse class that will be called in the PostResponse owner attribute
+class UserOut(BaseModel): # placed here to give interpreter knowledge of the UserOut class that will be called in the PostResponse owner attribute
     id: int
     email: EmailStr
     created_at: datetime
@@ -38,7 +38,7 @@ class PostResponse(PostBase):
     id: int
     created_at: datetime
     owner_id: int
-    owner: UserResponse         # infuses a Pydantic model of the owner into Post response. Yields a nested json string
+    owner: UserOut         # infuses a Pydantic model of the owner into Post response. Yields a nested json string
 
     class Config:
         ''' Tells pydantic to convert the data it receives in a sqlalchemy model into data in a pydantic model'''

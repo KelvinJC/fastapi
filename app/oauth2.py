@@ -9,10 +9,12 @@ from .config import settings
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='login') # the string login here is from the login endpoint i.e. /login path operation
 
-# create a secret key 
-SECRET_KEY = settings.secret_key        # all settings.x values are read into the program from environment variables
-# select algorithm to be deployed
-ALGORITHM = settings.algorithm
+ 
+# all settings.x values are read into the program from environment variables
+# create a secret key
+SECRET_KEY = settings.secret_key        
+# select algorithm to be deployed in hashing token
+ALGORITHM = settings.algorithm    
 # specify time to expiration of token
 ACCESS_TOKEN_EXPIRE_MINUTES = settings.access_token_expire_minutes
 
@@ -40,7 +42,7 @@ def verify_access_token(token: str, credentials_exception):
     
     return token_data
 
-def get_current_user(token: str = Depends(oauth2_scheme),db: Session = Depends(database.get_db)):
+def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(database.get_db)):
     credentials_exception = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, 
                                             detail=f"Could not validate credentials", headers={"WWW-Authenticate": "Bearer"})
     
