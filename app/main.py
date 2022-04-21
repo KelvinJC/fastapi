@@ -3,7 +3,7 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .database import engine
+# from .database import engine
 from .routers import post, user, auth, vote
 from .config import Settings
 
@@ -33,5 +33,5 @@ app.include_router(vote.router)
 # base path operation
 @app.get("/") # decorator
 async def root(): # In the case of this router, async keyword (used for asynchronous operations) not required
-    return {"message": "Hello World! Welcome to my API. It's the best!"}
+    return {"message": "Hello World! Welcome to my API. It's the best. Successfully deployed from CI/CD pipeline!"}
 

@@ -49,12 +49,33 @@ jobs:
           pip install pytest
           pytest
 
-          # ------ place docker step here -------- #
+          # ------ place docker steps here -------- #
 
   deploy:
     runs-on: ubuntu-latest
     needs: [build]
-
+    environment:
+      name: production
     steps:
-      - name: deploying stuff
-        run: echo "Testing 1..2.. testing deploy phase of CI/CD"
+      - name: pulling git repo
+        uses: actions/checkout@v2
+      - name: deploying Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}} # Must be unique in Heroku
+          heroku_email: ${{secrets.HEROKU_EMAIL}}  
+
+        #  ----- Steps to deploy on heroku via Github Actions ----- #
+        #  on the runner I would have to:
+        #   - pull the github repo 
+        #       - since job could potentially take place on a different runner, 
+        #       - it would need to have access to the repo
+        #   - install heroku cli
+        #   - heroku login
+        #   - add git remote for heroku
+        #   - git push heroku main
+
+        # ----- Instead of doing all the above manually --------#
+        # ** just find a built-in action on Github Actions marketplace 
+        # ** that does it all under the hood
