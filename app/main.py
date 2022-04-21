@@ -33,5 +33,5 @@ app.include_router(vote.router)
 # base path operation
 @app.get("/") # decorator
 async def root(): # In the case of this router, async keyword (used for asynchronous operations) not required
-    return {"message": "Hello World! Welcome to my API. It's the best. Successfully deployed from CI/CD"}
+    return {"message": "Hello World! - Fast API successfully deployed from CI/CD pipeline."}
 
