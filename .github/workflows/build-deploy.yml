@@ -6,6 +6,8 @@ on: ["push", "pull_request"]
   
 jobs:
   job1:
+  # create an environment on github 
+  # pass env vars as env secrets 
     environment:
       name: testing
     env: 
